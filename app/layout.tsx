@@ -13,19 +13,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "amachi hoshisora × エヴァンゲリオン コラボ予約",
-  description: "amachi hoshisoraとエヴァンゲリオンのコラボレーション予約チラシ",
+  title:
+    "天地星空(amachi hoshisora) × エヴァンゲリオン in 富士山静岡空港 コラボ予約サイト",
+  description: "amachi hoshisoraとエヴァンゲリオンのコラボレーション予約サイト",
   keywords: ["amachi hoshisora", "エヴァンゲリオン", "コラボ", "予約"],
   openGraph: {
     title: "amachi hoshisora × エヴァンゲリオン コラボ予約",
-    description: "amachi hoshisoraとエヴァンゲリオンのコラボレーション予約チラシ",
+    description:
+      "amachi hoshisoraとエヴァンゲリオンのコラボレーション予約チラシ",
     type: "website",
     locale: "ja_JP",
   },
   twitter: {
     card: "summary_large_image",
     title: "amachi hoshisora × エヴァンゲリオン コラボ予約",
-    description: "amachi hoshisoraとエヴァンゲリオンのコラボレーション予約チラシ",
+    description:
+      "amachi hoshisoraとエヴァンゲリオンのコラボレーション予約チラシ",
   },
 };
 
