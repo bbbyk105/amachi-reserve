@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -16,6 +16,25 @@ export const metadata: Metadata = {
   title: "amachi hoshisora × エヴァンゲリオン コラボ予約",
   description: "amachi hoshisoraとエヴァンゲリオンのコラボレーション予約チラシ",
   keywords: ["amachi hoshisora", "エヴァンゲリオン", "コラボ", "予約"],
+  openGraph: {
+    title: "amachi hoshisora × エヴァンゲリオン コラボ予約",
+    description: "amachi hoshisoraとエヴァンゲリオンのコラボレーション予約チラシ",
+    type: "website",
+    locale: "ja_JP",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "amachi hoshisora × エヴァンゲリオン コラボ予約",
+    description: "amachi hoshisoraとエヴァンゲリオンのコラボレーション予約チラシ",
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: "#581c87",
 };
 
 export default function RootLayout({
