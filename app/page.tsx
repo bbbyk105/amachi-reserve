@@ -9,6 +9,7 @@ export default function Home() {
   const [showHexagon, setShowHexagon] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const containerRef = useRef<HTMLAnchorElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const updateBgImage = () => {
@@ -34,17 +35,46 @@ export default function Home() {
   const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (containerRef.current) {
       const rect = containerRef.current.getBoundingClientRect();
+      const cursorX = e.clientX - rect.left;
+      const cursorY = e.clientY - rect.top;
+      
       setCursorPos({
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
+        x: cursorX,
+        y: cursorY,
       });
-      setShowHexagon(true);
+
+      // ボタンの範囲内かチェック
+      if (buttonRef.current && isHovered) {
+        const buttonRect = buttonRef.current.getBoundingClientRect();
+        const buttonLeft = buttonRect.left;
+        const buttonRight = buttonRect.right;
+        const buttonTop = buttonRect.top;
+        const buttonBottom = buttonRect.bottom;
+
+        const isOverButton =
+          e.clientX >= buttonLeft &&
+          e.clientX <= buttonRight &&
+          e.clientY >= buttonTop &&
+          e.clientY <= buttonBottom;
+
+        setShowHexagon(!isOverButton);
+      } else {
+        setShowHexagon(true);
+      }
     }
   };
 
   const handleMouseLeave = () => {
     setShowHexagon(false);
     setIsHovered(false);
+  };
+
+  const handleButtonMouseEnter = () => {
+    setShowHexagon(false);
+  };
+
+  const handleButtonMouseLeave = () => {
+    setShowHexagon(true);
   };
 
   return (
@@ -123,11 +153,14 @@ export default function Home() {
 
       {/* 応募ボタン - エヴァンゲリオン風 */}
       <div
+        ref={buttonRef}
         className={`absolute left-1/2 transform -translate-x-1/2 z-30 transition-all duration-500 ${
           isDesktop ? "bottom-32" : "bottom-24"
         } ${
           isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
+        onMouseEnter={handleButtonMouseEnter}
+        onMouseLeave={handleButtonMouseLeave}
       >
         <div
           style={{
