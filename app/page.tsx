@@ -77,6 +77,8 @@ export default function Home() {
     setShowHexagon(true);
   };
 
+  const showCta = isDesktop ? isHovered : true;
+
   return (
     <a
       ref={containerRef}
@@ -120,34 +122,44 @@ export default function Home() {
       )}
       {/* スキャンライン */}
       <div
-        className="absolute inset-0 pointer-events-none z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        className={`absolute inset-0 pointer-events-none z-20 transition-opacity duration-300 ${
+          isDesktop ? "opacity-0 group-hover:opacity-100" : "opacity-70"
+        }`}
         style={{
-          background:
-            "linear-gradient(transparent 50%, rgba(139, 92, 246, 0.03) 50%)",
+          backgroundImage: `linear-gradient(transparent 50%, ${
+            isDesktop ? "rgba(139, 92, 246, 0.03)" : "rgba(139, 92, 246, 0.06)"
+          } 50%)`,
           backgroundSize: "100% 4px",
+          backgroundRepeat: "repeat",
           animation: "scanline 3s linear infinite",
         }}
       />
 
       {/* グリッチエフェクト */}
       <div
-        className="absolute inset-0 pointer-events-none z-10 opacity-0 group-hover:opacity-30 transition-opacity duration-300"
+        className={`absolute inset-0 pointer-events-none z-10 transition-opacity duration-300 ${
+          isDesktop ? "opacity-0 group-hover:opacity-30" : "opacity-0"
+        }`}
         style={{
           backgroundImage: `url('${bgImage}')`,
           backgroundSize: "contain",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           mixBlendMode: "screen",
-          animation: "glitch 0.3s infinite",
+          animation: isDesktop ? "glitch 0.3s infinite" : "none",
         }}
       />
 
       {/* 警告フラッシュ */}
       <div
-        className="absolute inset-0 pointer-events-none z-15 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        className={`absolute inset-0 pointer-events-none z-15 transition-opacity duration-300 ${
+          isDesktop ? "opacity-0 group-hover:opacity-100" : "opacity-100"
+        }`}
         style={{
-          background: "rgba(139, 92, 246, 0.1)",
-          animation: "warning-flash 1s ease-in-out infinite",
+          background: isDesktop ? "rgba(139, 92, 246, 0.1)" : "rgba(139, 92, 246, 0.06)",
+          animation: isDesktop
+            ? "warning-flash 1s ease-in-out infinite"
+            : "warning-flash 2.4s ease-in-out infinite",
         }}
       />
 
@@ -155,9 +167,9 @@ export default function Home() {
       <div
         ref={buttonRef}
         className={`absolute left-1/2 transform -translate-x-1/2 z-30 transition-all duration-500 ${
-          isDesktop ? "bottom-32" : "bottom-24"
+          isDesktop ? "bottom-32" : "bottom-12"
         } ${
-          isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          showCta ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
         onMouseEnter={handleButtonMouseEnter}
         onMouseLeave={handleButtonMouseLeave}
@@ -241,8 +253,7 @@ export default function Home() {
                   ? "8px solid transparent"
                   : "6px solid transparent",
                 borderTop: isDesktop ? "12px solid #000" : "9px solid #000",
-                animation: "text-blink 1s ease-in-out infinite",
-                animationDelay: "0.5s",
+                animation: "text-blink 1s ease-in-out 0.5s infinite",
               }}
             />
           </div>
@@ -250,7 +261,11 @@ export default function Home() {
       </div>
 
       {/* 幾何学的パターン（コーナー） */}
-      <div className="absolute top-0 left-0 w-32 h-32 pointer-events-none z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+      <div
+        className={`absolute top-0 left-0 w-32 h-32 pointer-events-none z-20 transition-opacity duration-500 ${
+          isDesktop ? "opacity-0 group-hover:opacity-100" : "opacity-30"
+        }`}
+      >
         <div
           className="absolute top-4 left-4 w-16 h-16 border-2 border-purple-400/50"
           style={{
@@ -260,7 +275,11 @@ export default function Home() {
           }}
         />
       </div>
-      <div className="absolute top-0 right-0 w-32 h-32 pointer-events-none z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+      <div
+        className={`absolute top-0 right-0 w-32 h-32 pointer-events-none z-20 transition-opacity duration-500 ${
+          isDesktop ? "opacity-0 group-hover:opacity-100" : "opacity-30"
+        }`}
+      >
         <div
           className="absolute top-4 right-4 w-16 h-16 border-2 border-cyan-400/50"
           style={{
@@ -270,7 +289,11 @@ export default function Home() {
           }}
         />
       </div>
-      <div className="absolute bottom-0 left-0 w-32 h-32 pointer-events-none z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+      <div
+        className={`absolute bottom-0 left-0 w-32 h-32 pointer-events-none z-20 transition-opacity duration-500 ${
+          isDesktop ? "opacity-0 group-hover:opacity-100" : "opacity-30"
+        }`}
+      >
         <div
           className="absolute bottom-4 left-4 w-16 h-16 border-2 border-purple-400/50"
           style={{
@@ -280,7 +303,11 @@ export default function Home() {
           }}
         />
       </div>
-      <div className="absolute bottom-0 right-0 w-32 h-32 pointer-events-none z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+      <div
+        className={`absolute bottom-0 right-0 w-32 h-32 pointer-events-none z-20 transition-opacity duration-500 ${
+          isDesktop ? "opacity-0 group-hover:opacity-100" : "opacity-30"
+        }`}
+      >
         <div
           className="absolute bottom-4 right-4 w-16 h-16 border-2 border-cyan-400/50"
           style={{
