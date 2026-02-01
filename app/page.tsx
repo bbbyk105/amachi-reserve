@@ -19,7 +19,7 @@ export default function Home() {
       setBgImage(
         desktop
           ? "/images/amachi-catalog2-1.png"
-          : "/images/amachi-catalog1-1.png",
+          : "/images/amachi-catalog1-1.png"
       );
     };
 
@@ -37,7 +37,7 @@ export default function Home() {
       const rect = containerRef.current.getBoundingClientRect();
       const cursorX = e.clientX - rect.left;
       const cursorY = e.clientY - rect.top;
-      
+
       setCursorPos({
         x: cursorX,
         y: cursorY,
@@ -82,7 +82,7 @@ export default function Home() {
   return (
     <a
       ref={containerRef}
-      href="https://example.com"
+      href="https://forms.gle/tpgzDMQnH2XbABPSA"
       className="block w-screen h-screen relative cursor-pointer overflow-hidden bg-black group"
       style={{
         backgroundImage: `url('${bgImage}')`,
@@ -156,7 +156,9 @@ export default function Home() {
           isDesktop ? "opacity-0 group-hover:opacity-100" : "opacity-100"
         }`}
         style={{
-          background: isDesktop ? "rgba(139, 92, 246, 0.1)" : "rgba(139, 92, 246, 0.06)",
+          background: isDesktop
+            ? "rgba(139, 92, 246, 0.1)"
+            : "rgba(139, 92, 246, 0.06)",
           animation: isDesktop
             ? "warning-flash 1s ease-in-out infinite"
             : "warning-flash 2.4s ease-in-out infinite",
